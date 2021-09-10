@@ -6,14 +6,14 @@ provider "tfe" {
 }
 
 data "tfe_workspace_ids" "customerfacing" {
-  tag_names    = ["danny"]
+  tag_names    = ["customerfacing"]
   organization = var.organization
 }
 
 
 resource "tfe_notification_configuration" "notification_for_customerfacing" {
   for_each         = data.tfe_workspace_ids.customerfacing.ids
-  name             = "notification_for_customerfacing"
+  name             = "customerfacing"
   enabled          = false
   destination_type = "slack"
   triggers         = ["run:needs_attention", "run:errored"]
