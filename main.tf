@@ -11,12 +11,12 @@ data "tfe_workspace_ids" "customerfacing" {
 }
 
 
-resource "tfe_notification_configuration" "notification_for_customerfacing" {
+resource "tfe_notification_configuration" "customerfacing" {
   for_each         = data.tfe_workspace_ids.customerfacing.ids
   name             = "customerfacing"
   enabled          = false
   destination_type = "slack"
   triggers         = ["run:needs_attention", "run:errored"]
-  url              = "https://hooks.slack.com/services/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"
+  url              = var.url
   workspace_id     = each.value
 }
