@@ -6,7 +6,7 @@ provider "tfe" {
 }
 
 data "tfe_workspace_ids" "customerfacing" {
-  tag_names    = ["customerfacing"]
+  tag_names    = ["danny"]
   organization = var.organization
 }
 
@@ -14,9 +14,9 @@ data "tfe_workspace_ids" "customerfacing" {
 resource "tfe_notification_configuration" "notification_for_customerfacing" {
   for_each         = data.tfe_workspace_ids.customerfacing.ids
   name             = "notification_for_customerfacing"
-  enabled          = true
+  enabled          = false
   destination_type = "slack"
   triggers         = ["run:needs_attention", "run:errored"]
-  url              = "https://hooks.slack.com/services/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"
+  url              = "https://hooks.slack.com/services/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"
   workspace_id     = each.value
 }
