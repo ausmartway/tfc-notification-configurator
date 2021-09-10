@@ -11,9 +11,9 @@ data "tfe_workspace_ids" "customerfacing" {
 }
 
 
-resource "tfe_notification_configuration" "customerfacing" {
+resource "tfe_notification_configuration" "notifications_for_customerfacing" {
   for_each         = data.tfe_workspace_ids.customerfacing.ids
-  name             = "customerfacing"
+  name             = "customerfacing-Slack-Ops"
   enabled          = true
   destination_type = "slack"
   triggers         = ["run:needs_attention", "run:errored"]
