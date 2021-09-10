@@ -17,6 +17,6 @@ resource "tfe_notification_configuration" "notification_for_customerfacing" {
   enabled          = true
   destination_type = "slack"
   triggers         = ["run:needs_attention", "run:errored"]
-  url              = "https://hooks.slack.com/services/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"
+  url              = "https://hooks.slack.com/services/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"
   workspace_id     = each.value
 }
